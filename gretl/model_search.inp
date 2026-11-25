@@ -1,0 +1,143 @@
+# Перебор спецификаций ARIMAX в gretl (история команд сессии, апрель 2025)
+# Запись истории команд текущей сессии.  Учтите, что для запуска
+# этих команд в скрипте, возможно, придется внести некоторые изменения.
+open \
+  "../data/model_data_logs.xlsx" \
+  --coloffset=1
+setobs 1 1998 --time-series
+# модель 1
+arima 1 1 1 ; income grp doctors gini migration naturalpopulationgrowth \
+  students 0 --conditional
+# модель 2
+arima 1 1 1 ; income grp doctors gini migration students 0 --conditional
+# модель 3
+arima 1 1 1 ; income grp gini migration students 0 --conditional
+# модель 4
+arima 1 1 1 ; income grp gini students 0 --conditional
+# модель 5
+arima 1 1 1 ; income grp 0 --conditional
+# модель 6
+arima 1 1 1 ; income grp migration 0 --conditional
+# модель 7
+arima 1 1 1 ; income grp migration naturalpopulationgrowth 0 --conditional
+# модель 8
+arima 1 1 1 ; income doctors 0 --conditional
+# модель 9
+arima 1 1 1 ; income migration naturalpopulationgrowth 0 --conditional
+# модель 10
+arima 1 1 1 ; income migration 0 --conditional
+# модель 11
+arima 1 1 1 ; income migration doctors 0 --conditional
+# модель 12
+arima 1 1 1 ; income migration doctors gini 0 --conditional
+# модель 13
+arima 1 1 1 ; income migration doctors naturalpopulationgrowth 0 \
+  --conditional
+# модель 14
+arima 1 1 1 ; income migration doctors students 0 --conditional
+# модель 15
+arima 1 1 1 ; income migration doctors grp 0 --conditional
+# модель 16
+arima 1 1 1 ; income grp naturalpopulationgrowth migration 0 --conditional
+# модель 17
+arima 1 1 1 ; income grp naturalpopulationgrowth 0 --conditional
+# модель 18
+arima 1 1 1 ; income grp gini 0 --conditional
+# модель 19
+arima 1 1 1 ; income naturalpopulationgrowth doctors 0 --conditional
+# модель 20
+arima 1 1 1 ; income doctors gini 0 --conditional
+# модель 21
+arima 1 1 1 ; income doctors students 0 --conditional
+# модель 22
+arima 1 1 1 ; income gini migration 0 --conditional
+# модель 23
+arima 1 1 1 ; income migration 0 --conditional
+# модель 11
+modtest --normality
+modtest --autocorr 13
+bkw
+# модель 4
+modtest --normality
+modtest --autocorr 3
+# модель 24
+arima 1 1 1 ; income migration doctors 0 --conditional
+modtest --normality
+modtest --autocorr 3
+modtest 1 --arch
+xcorrgm income grp 1
+normtest income --all
+boxplot income
+summary income
+corrgm income 5
+# модель 25
+arima 2 1 1 ; income migration doctors 0 --conditional
+xcorrgm grp doctors 1
+# модель 26
+arima 1 1 1 ; income grp gini students 0 --conditional
+modtest --normality
+modtest --autocorr 3
+modtest 1 --arch
+logs income
+# модель 27
+arima 1 0 1 ; l_income grp doctors gini migration naturalpopulationgrowth \
+  students 0 --conditional
+# модель 28
+arima 1 0 1 ; l_income grp doctors gini naturalpopulationgrowth students \
+  0 --conditional
+# модель 29
+arima 1 0 1 ; l_income grp 0 --conditional
+# модель 30
+arima 1 0 1 ; l_income migration naturalpopulationgrowth 0 --conditional
+# модель 31
+arima 1 0 1 ; l_income migration 0 --conditional
+# модель 32
+arima 1 0 1 ; l_income migration grp doctors gini naturalpopulationgrowth \
+  students 0 --conditional
+# модель 33
+arima 1 0 1 ; l_income grp doctors gini naturalpopulationgrowth students \
+  0 --conditional
+# модель 34
+arima 1 0 1 ; l_income grp doctors gini students 0 --conditional
+# модель 35
+arima 1 0 1 ; l_income grp gini students 0 --conditional
+# модель 36
+arima 1 0 1 ; l_income grp gini 0 --conditional
+# модель 37
+arima 1 0 1 ; l_income grp 0 --conditional
+# модель 38
+arima 1 0 1 ; l_income doctors gini migration naturalpopulationgrowth \
+  students 0 --conditional
+# модель 39
+arima 1 0 1 ; l_income gini migration naturalpopulationgrowth students 0 \
+  --conditional
+# модель 40
+arima 1 0 1 ; l_income migration naturalpopulationgrowth students 0 \
+  --conditional
+# модель 41
+arima 1 0 1 ; l_income naturalpopulationgrowth students 0 --conditional
+# модель 42
+arima 1 0 1 ; l_income students 0 --conditional
+# модель 43
+arima 1 0 1 ; l_income grp gini migration naturalpopulationgrowth \
+  students 0 --conditional
+# модель 44
+arima 1 0 1 ; l_income grp migration naturalpopulationgrowth students \
+  doctors 0 --conditional
+# модель 45
+arima 1 0 1 ; l_income grp migration naturalpopulationgrowth students \
+  doctors gini 0 --conditional
+# модель 46
+arima 1 0 1 ; l_income grp migration naturalpopulationgrowth doctors gini \
+  0 --conditional
+# модель 47
+arima 1 0 1 ; l_income grp doctors gini migration naturalpopulationgrowth \
+  students 0 --conditional
+# модель 48
+arima 1 0 1 ; l_income grp doctors gini migration students 0 --conditional
+# модель 49
+arima 1 0 1 ; l_income grp doctors gini students 0 --conditional
+# модель 50
+arima 1 0 1 ; l_income grp gini students 0 --conditional
+# модель 51
+arima 1 0 1 ; l_income grp gini 0 --conditional
